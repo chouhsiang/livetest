@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>測試</title>
+    <style>
+        #mute {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+
+<body>
+    <button onclick="video1()">中天</button>
+    <button onclick="video2()">東森</button>
+    <button onclick="video3()">TVBS</button>
+    <button onclick="video4()">三立</button>
+    <hr>
+    <iframe id="iframe-video1" width="560" height="315"
+        src="https://www.youtube.com/embed/9pWXAEZ5NLs?enablejsapi=1&controls=0&autoplay=1&mute=1" frameborder="0"
+        allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+    <iframe id="iframe-video2" width="560" height="315"
+        src="https://www.youtube.com/embed/63RmMXCd_bQ?enablejsapi=1&controls=0&autoplay=1&mute=1" frameborder="0"
+        allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+    <br>
+    <iframe id="iframe-video3" width="560" height="315"
+        src="https://www.youtube.com/embed/A4FbB8UhNRs?enablejsapi=1&controls=0&autoplay=1&mute=1" frameborder="0"
+        allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+    <iframe id="iframe-video4" width="560" height="315"
+        src="https://www.youtube.com/embed/MYwrZeIsRWU?enablejsapi=1&controls=0&autoplay=1&mute=1" frameborder="0"
+        allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+
+
+
+    <script>
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var ytvideo1, ytvideo2, ytvideo3, ytvideo4;
+
+        function onYouTubeIframeAPIReady() {
+            ytvideo1 = new YT.Player('iframe-video1', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+
+            ytvideo2 = new YT.Player('iframe-video2', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+            ytvideo3 = new YT.Player('iframe-video3', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+            ytvideo4 = new YT.Player('iframe-video4', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+        function onPlayerReady() {
+
+            console.log("hey Im ready");
+            //do whatever you want here. Like, player.playVideo();
+
+        }
+
+        function onPlayerStateChange() {
+            console.log("my state changed");
+        }
+
+        function video1() {
+            ytvideo1.unMute();
+            ytvideo2.mute();
+            ytvideo3.mute();
+            ytvideo4.mute();
+
+        }
+        function video2() {
+            ytvideo1.mute();
+            ytvideo2.unMute();
+            ytvideo3.mute();
+            ytvideo4.mute();
+
+        }
+        function video3() {
+            ytvideo1.mute();
+            ytvideo2.mute();
+            ytvideo3.unMute();
+            ytvideo4.mute();
+
+        }
+        function video4() {
+            ytvideo1.mute();
+            ytvideo2.mute();
+            ytvideo3.mute();
+            ytvideo4.unMute();
+
+        }
+
+    </script>
+</body>
+
+</html>
